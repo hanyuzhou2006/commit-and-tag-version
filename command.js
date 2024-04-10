@@ -157,9 +157,7 @@ let yargs = require('yargs')
   })
   .wrap(97);
 
-yargs = yargs.config(
-  getConfiguration(yargs.argv.config),
-);
+yargs = yargs.config(getConfiguration(yargs.argv.config));
 
 Object.keys(spec.properties).forEach((propertyKey) => {
   const property = spec.properties[propertyKey];
