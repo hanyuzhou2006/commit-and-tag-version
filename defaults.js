@@ -32,7 +32,7 @@ Object.keys(spec.properties).forEach((propertyKey) => {
  * compatibility. This should be removed in the next major version.
  */
 defaults.header =
-  '# Changelog\n\nAll notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.\n';
+  '# Changelog\n\nAll notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/hanyuzhou2006/commit-and-tag-version) for commit guidelines.\n';
 
 defaults.packageFiles = ['package.json', 'bower.json', 'manifest.json'];
 
