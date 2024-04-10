@@ -2,7 +2,7 @@ const spec = require('conventional-changelog-config-spec');
 const { getConfiguration } = require('./lib/configuration');
 const defaults = require('./defaults');
 
-const yargs = require('yargs')
+let yargs = require('yargs')
   .usage('Usage: $0 [options]')
   .option('packageFiles', {
     default: defaults.packageFiles,
@@ -150,8 +150,16 @@ const yargs = require('yargs')
   )
   .pkgConf('standard-version')
   .pkgConf('commit-and-tag-version')
-  .config(getConfiguration())
+  .option('config', {
+    alias: 'c',
+    describe: 'Path to a versionrc file with the configuration',
+    type: 'string',
+  })
   .wrap(97);
+
+yargs = yargs.config(
+  getConfiguration(yargs.argv.config),
+);
 
 Object.keys(spec.properties).forEach((propertyKey) => {
   const property = spec.properties[propertyKey];
