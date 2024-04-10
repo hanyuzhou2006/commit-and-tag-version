@@ -1,27 +1,12 @@
 # Commit and Tag Version
 
-> **`commit-and-tag-version` is a fork of `standard-version`**. Because of maintainer availability, `standard-version` was [deprecated on 15th May 2022](https://github.com/conventional-changelog/standard-version/pull/907). The previous maintainer recommends [release-please](https://github.com/googleapis/release-please) as an alternative for those who are using GitHub actions. This fork exists for those who can't switch to `release-please`, or who would like to continue using `standard-version`.
-
-> **`Can I simply swap the library to migrate?`** To migrate, you can drop in `commit-and-tag-version` in place of `standard-version`. There are no changes in 9.5.0, other than to add the package.json config key `commit-and-tag-version` (the previous configuration key `standard-version` will still work). 10.x drops support for deprecated node versions, 11.x is a formatting change if you're relying on the exact markdown format in the changelog, and 12.x drops support for node 14/16.
-
-> **`Why was it renamed commit-and-tag-version?`**. I didn't want to scope the package or name it `standard-version-fork`, and it was a good opportunity to make the purpose of the tool clearer. I also wanted to distinguish it from the other tool in this organisation, [`absolute-version`](https://github.com/absolute-version/absolute-version-js), which just prints version information for pre-releases. 
-
-A utility for versioning using [semver](https://semver.org/) and CHANGELOG generation powered by [Conventional Commits](https://conventionalcommits.org).
-
-![ci](https://github.com/absolute-version/commit-and-tag-version/workflows/ci/badge.svg)
-[![NPM version](https://img.shields.io/npm/v/commit-and-tag-version.svg)](https://www.npmjs.com/package/commit-and-tag-version)
-[![codecov](https://codecov.io/gh/absolute-version/commit-and-tag-version/branch/master/graph/badge.svg?token=J7zMN7vTTd)](https://codecov.io/gh/absolute-version/commit-and-tag-version)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![Community slack](http://devtoolscommunity.herokuapp.com/badge.svg)](http://devtoolscommunity.herokuapp.com)
-
-_Having problems? Want to contribute? Join us on the [node-tooling community Slack](http://devtoolscommunity.herokuapp.com)_.
-
 - [Commit and Tag Version](#commit-and-tag-version)
     - [How It Works:](#how-it-works)
     - [`bumpFiles`, `packageFiles` and `updaters`](#bumpfiles-packagefiles-and-updaters)
     - [Maven Support (Java/Kotlin)](#maven-support-javakotlin)
     - [Gradle Support (Java/Kotlin)](#gradle-support-javakotlin)
     - [.NET Support](#net-support)
+    - [Sonar Support](#sonar-support)
   - [Installing `commit-and-tag-version`](#installing-commit-and-tag-version)
     - [As a local `npm run` script](#as-a-local-npm-run-script)
     - [As global `bin`](#as-global-bin)
@@ -108,6 +93,14 @@ This is going to read and update only the `<Version>` tag in the file.
 commit-and-tag-version --packageFiles <YOUR-PROJECT-NAME>.csproj --bumpFiles <YOUR-PROJECT-NAME>.csproj
 ```
 
+### Sonar Support
+
+If you want to use sonar-project.properties
+
+```sh
+commit-and-tag-version --packageFiles sonar-project.properties --bumpFiles sonar-project.properties
+```
+
 ## Installing `commit-and-tag-version`
 
 ### As a local `npm run` script
@@ -115,7 +108,7 @@ commit-and-tag-version --packageFiles <YOUR-PROJECT-NAME>.csproj --bumpFiles <YO
 Install and add to `devDependencies`:
 
 ```
-npm i --save-dev commit-and-tag-version
+npm i --save-dev git+https://github.com/hanyuzhou2006/commit-and-tag-version.git
 ```
 
 Add an [`npm run` script](https://docs.npmjs.com/cli/run-script) to your `package.json`:
@@ -137,7 +130,7 @@ This has the benefit of making your repo/package more portable, so that other de
 Install globally (add to your `PATH`):
 
 ```
-npm i -g commit-and-tag-version
+npm i -g git+https://github.com/hanyuzhou2006/commit-and-tag-version.git
 ```
 
 Now you can use `commit-and-tag-version` in place of `npm version`.
