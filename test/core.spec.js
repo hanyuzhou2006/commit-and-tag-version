@@ -1365,6 +1365,40 @@ describe('cli', function () {
       verifyPackageVersion({ writeFileSyncSpy, expectedVersion: '1.1.0' });
     });
 
+    it('bumps version in sonar-project.properties', async function () {
+      const expected = fs.readFileSync(
+        './test/mocks/sonar-project-6.4.0.properties',
+        'utf-8',
+      );
+      const filename = 'sonar-project.properties';
+      mock({
+        bump: 'minor',
+        realTestFiles: [
+          {
+            filename,
+            path: './test/mocks/sonar-project-6.3.1.properties',
+          },
+        ],
+      });
+      await exec({
+        packageFiles: [{ filename, type: 'sonar' }],
+        bumpFiles: [{ filename, type: 'sonar' }],
+      });
+
+      // filePath is the first arg passed to writeFileSync
+      const packageJsonWriteFileSynchCall = findWriteFileCallForPath({
+        writeFileSyncSpy,
+        filename,
+      });
+
+      if (!packageJsonWriteFileSynchCall) {
+        throw new Error(`writeFileSynch not invoked with path ${filename}`);
+      }
+
+      const calledWithContentStr = packageJsonWriteFileSynchCall[1];
+      expect(calledWithContentStr).toEqual(expected);
+    });
+
     describe('skip', function () {
       it('allows bump and changelog generation to be skipped', async function () {
         const changelogContent = 'legacy header format<a name="1.0.0">\n';
