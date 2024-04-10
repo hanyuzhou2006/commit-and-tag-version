@@ -1,5 +1,5 @@
 {
-  "name": "commit-and-tag-version",
+  "name": "@sansitech/commit-and-tag-version",
   "version": "12.2.0",
   "description": "replacement for `npm version` with automatic CHANGELOG generation",
   "bin": "bin/cli.js",
@@ -14,7 +14,7 @@
     "test:git-integration": "jest --testPathPattern test/git.integration-test.js",
     "release": "bin/cli.js"
   },
-  "repository": "absolute-version/commit-and-tag-version",
+  "repository": "hanyuzhou2006/commit-and-tag-version",
   "engines": {
     "node": ">=18"
   },
@@ -30,13 +30,13 @@
   ],
   "author": "Ben Coe <ben@npmjs.com>",
   "contributors": [
-    "Timothy Jones <timothy.l.jones@gmail.com> (https://github.com/TimothyJones)"
+    "Hanyuzhou2006 <hanyuzhou2006@outlook.com> (https://github.com/hanyuzhou2006)"
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/absolute-version/commit-and-tag-version/issues"
+    "url": "https://github.com/hanyuzhou2006/commit-and-tag-version/issues"
   },
-  "homepage": "https://github.com/absolute-version/commit-and-tag-version#readme",
+  "homepage": "https://github.com/hanyuzhou2006/commit-and-tag-version#readme",
   "dependencies": {
     "chalk": "^2.4.2",
     "conventional-changelog": "3.1.25",
