@@ -1,0 +1,12 @@
+[package]
+name = "my-app"
+version = "6.4.0"
+edition = "2021"
+build = "build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = "1.0.195"
+serde_json = "1.0.111"
+serde_yaml = "0.9.30"

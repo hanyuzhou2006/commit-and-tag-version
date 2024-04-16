@@ -1,12 +1,13 @@
 # Commit and Tag Version
 
 - [Commit and Tag Version](#commit-and-tag-version)
-    - [How It Works:](#how-it-works)
+    - [How It Works](#how-it-works)
     - [`bumpFiles`, `packageFiles` and `updaters`](#bumpfiles-packagefiles-and-updaters)
     - [Maven Support (Java/Kotlin)](#maven-support-javakotlin)
     - [Gradle Support (Java/Kotlin)](#gradle-support-javakotlin)
     - [.NET Support](#net-support)
     - [Sonar Support](#sonar-support)
+    - [Cargo Support](#cargo-support)
   - [Installing `commit-and-tag-version`](#installing-commit-and-tag-version)
     - [As a local `npm run` script](#as-a-local-npm-run-script)
     - [As global `bin`](#as-global-bin)
@@ -21,6 +22,7 @@
     - [Release as a Target Type Imperatively (`npm version`-like)](#release-as-a-target-type-imperatively-npm-version-like)
     - [Prevent Git Hooks](#prevent-git-hooks)
     - [Signing Commits and Tags](#signing-commits-and-tags)
+    - [Signed-off-by trailer](#signed-off-by-trailer)
     - [Lifecycle Scripts](#lifecycle-scripts)
     - [Skipping Lifecycle Steps](#skipping-lifecycle-steps)
     - [Committing Generated Artifacts in the Release Commit](#committing-generated-artifacts-in-the-release-commit)
@@ -35,8 +37,9 @@
     - [Should I always squash commits when merging PRs?](#should-i-always-squash-commits-when-merging-prs)
     - [Can I use `commit-and-tag-version` for additional metadata files, languages or version files?](#can-i-use-commit-and-tag-version-for-additional-metadata-files-languages-or-version-files)
       - [Custom `updater`s](#custom-updaters)
-        - [`readVersion(contents = string): string`](#readversioncontents--string-string)
-        - [`writeVersion(contents = string, version: string): string`](#writeversioncontents--string-version-string-string)
+        - [`readVersion(contents = string): string`](#readversioncontents-string-string)
+        - [`writeVersion(contents = string, version: string): string`](#writeversioncontents-string-version-string-string)
+    - [Why do breaking changes before 1.0.0 not trigger a 1.0.0 release?](#why-do-breaking-changes-before-100-not-trigger-a-100-release)
   - [License](#license)
 
 
@@ -99,6 +102,14 @@ If you want to use sonar-project.properties
 
 ```sh
 commit-and-tag-version --packageFiles sonar-project.properties --bumpFiles sonar-project.properties
+```
+
+### Cargo Support
+
+If you are using Rust with `Cargo.toml` file.
+
+```sh
+commit-and-tag-version --packageFiles Cargo.toml --bumpFiles Cargo.toml
 ```
 
 ## Installing `commit-and-tag-version`

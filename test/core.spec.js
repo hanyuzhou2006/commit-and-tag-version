@@ -1399,6 +1399,32 @@ describe('cli', function () {
       expect(calledWithContentStr).toEqual(expected);
     });
 
+    it('bumps version in Cargo.toml', async function () {
+      const expected = fs.readFileSync('./test/mocks/Cargo-6.4.0.toml', 'utf-8');
+      const filename = 'Cargo.toml';
+      mock({
+        bump: 'minor',
+        realTestFiles: [
+          {
+            filename,
+            path: './test/mocks/Cargo-6.3.1.toml',
+          },
+        ],
+      });
+      await exec({
+        packageFiles: [{ filename, type: 'cargo' }],
+        bumpFiles: [{ filename, type: 'cargo' }],
+      });
+      const packageJsonWriteFileSynchCall = findWriteFileCallForPath({
+        writeFileSyncSpy,
+        filename,
+      });
+      if(!packageJsonWriteFileSynchCall) {
+        throw new Error(`writeFileSynch not invoked with path ${filename}`);
+      }
+      const calledWithContentStr = packageJsonWriteFileSynchCall[1];
+      expect(calledWithContentStr).toEqual(expected);
+    });
     describe('skip', function () {
       it('allows bump and changelog generation to be skipped', async function () {
         const changelogContent = 'legacy header format<a name="1.0.0">\n';
